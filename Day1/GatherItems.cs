@@ -7,7 +7,7 @@ namespace Day1
 	public class GatherItems
 	{
         public List<Int32> ElfBackpackCount;
-        int elfCount;
+        Int32 elfCount;
         string[] Backpack;
          
 
@@ -18,6 +18,7 @@ namespace Day1
             ItemsIntoBags();
             Console.WriteLine("There is " +elfCount + " elfs with backpacks");
             FindElfWithTheMostCalories();
+            FindTopNWithMostCalories(3);
 
         }
 
@@ -29,6 +30,20 @@ namespace Day1
 
             }
         }
+
+        void FindTopNWithMostCalories(int n)
+        {
+            List<Int32> result = new List<Int32>();
+            result = ElfBackpackCount;
+            result.Sort();
+            result.RemoveRange(0, (elfCount - n));
+                
+            //result.Take(n);
+            Int32 retVal = result.Sum();
+
+            Console.WriteLine("The sum of the top "+ n + " backpacks: "  + retVal);
+        }
+
         void ReadTextFile()
         {
             string filePath = "@../../input.txt";
